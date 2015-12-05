@@ -22,3 +22,5 @@ twbs:bootstrap
 accounts-ui
 accounts-password
 momentjs:moment
+iron:router
+arkham:comments-ui

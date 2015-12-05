@@ -1,4 +1,41 @@
 /////
+// routing
+/////
+
+Router.configure({
+	layoutTemplate: "ApplicationLayout"
+});
+
+Router.route("/", function () {
+	this.render(
+		"website_form",
+		{to: "top"}
+	);
+	this.render(
+		"website_list",
+		{to: "bottom"}
+	);
+});
+
+Router.route("/:_id", function () {
+	var website = Websites.findOne({_id:this.params._id});
+	this.render(
+		"details",
+		{
+			to: "top",
+			data: website
+		}
+	);
+	this.render(
+		"comments",
+		{
+			to: "bottom",
+			data: website
+		}
+	);
+});
+
+/////
 // accounts config
 /////
 
@@ -7,8 +44,20 @@ Accounts.ui.config({
 });
 
 /////
+// Comments config
+/////
+
+Comments.ui.config({
+    template: 'bootstrap'
+});
+
+/////
 // template helpers
 /////
+
+function formatDate(date) {
+	return moment(date).fromNow();
+}
 
 // helper function that returns all available websites
 Template.website_list.helpers({
@@ -19,9 +68,15 @@ Template.website_list.helpers({
 
 Template.website_item.helpers({
 	formattedDate:function(){
-		return moment(this.createdOn).fromNow();
+		return formatDate(this.createdOn);
 	}
 });
+
+Template.details.helpers({
+	formattedDate:function(){
+		return formatDate(this.createdOn);
+	}
+})
 
 /////
 // template events
