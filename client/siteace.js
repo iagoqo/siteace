@@ -13,7 +13,7 @@ Accounts.ui.config({
 // helper function that returns all available websites
 Template.website_list.helpers({
 	websites:function(){
-		return Websites.find({}, {sort: {votes: -1}});
+		return Websites.find({}, {sort: {upvotes: -1}});
 	}
 });
 
@@ -32,13 +32,15 @@ Template.website_item.events({
 
 		var website_id = this._id;
 
-		// Add one vote
 		if (Meteor.user()) {
 			Websites.update(
 				{_id:website_id},
-				{$inc:{votes:1}}
+				{$inc:{upvotes:1}}
 			);
 		}
+		
+		var result = Websites.findOne({_id:website_id});
+		console.log(result);
 		
 		// Prevent page reload
 		return false;
@@ -47,11 +49,10 @@ Template.website_item.events({
 
 		var website_id = this._id;
 
-		// Remove one vote
 		if (Meteor.user()) {
 			Websites.update(
 				{_id:website_id},
-				{$inc:{votes:-1}}
+				{$inc:{downvotes:1}}
 			);
 		}
 		
@@ -76,7 +77,8 @@ Template.website_form.events({
 				description:description,
 				createdOn:new Date(),
 				createdBy:Meteor.user()._id,
-				votes:0
+				upvotes:0,
+				downvotes:0
 			});
 		}
 		

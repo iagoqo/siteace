@@ -23,7 +23,6 @@
 	</div>
 </body>
 
-
 <template name="website_form">
 	<a class="btn btn-default js-toggle-website-form" href="#">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -59,21 +58,29 @@
 
 <!-- template that displays individual website entries -->
 <template name="website_item">
-<li>
-	<a href="{{url}}">{{title}}</a>
-	<p>
-		Submitted {{formattedDate}}
-	</p>
-	<p>
-		{{description}}
-	</p>
-	<a href="#" class="btn btn-default js-upvote">
-		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-	</a>
-	<a href="#" class="btn btn-default js-downvote">
-		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-	</a>
-	<label>Score: {{votes}}</label>
-	<!-- you will be putting your up and down vote buttons in here! -->
+<li class="row">
+	<div class="col-xs-2 col-md-1">
+		<div class="row">
+			<a href="#" class="btn btn-success js-upvote" id="upvote">
+				<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+			</a>
+			<label for="upvote" class="text-success">{{upvotes}}</label>
+		</div>
+		<div class="row">
+			<a href="#" class="btn btn-danger js-downvote" id="downvote">
+				<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+			</a>
+			<label for="downvote" class="text-danger">{{downvotes}}</label>
+		</div>
+	</div>
+	<div class="col-xs-10 col-md-11">
+		<strong><a href="{{url}}">{{title}}</a></strong>
+		<p>
+			Submitted {{formattedDate}}
+		</p>
+		<p>
+			{{description}}
+		</p>
+	</div>
 </li>
 </template>
