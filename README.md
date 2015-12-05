@@ -1,2 +1,2 @@
 # siteace
-Project for the course Introduction to Meteor.js Development in Coursera
+Project for the course 'Introduction to Meteor.js Development' on Coursera.
