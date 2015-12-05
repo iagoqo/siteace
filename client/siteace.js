@@ -17,6 +17,11 @@ Template.website_list.helpers({
 	}
 });
 
+Template.website_item.helpers({
+	formattedDate:function(){
+		return moment(this.createdOn).fromNow();
+	}
+});
 
 /////
 // template events
