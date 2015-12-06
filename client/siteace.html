@@ -94,16 +94,37 @@
 </template>
 
 <template name="details">
-	<h2><a href="{{url}}">{{title}}</a></h2>
-	<p>Created {{formattedDate}}.</p>
-	<h3>Description</h3>
-	<p>
-		{{description}}
+<div class="row">
+		<h2 class="col-xs-12"><a href="{{url}}">{{title}}</a></h2>
+	<label class="col-xs-12">URL: <a href="{{url}}">{{url}}</a></label>
+</div>
+<div class="row">
+	<p class="col-xs-12">
+		Submitted {{formattedDate}}.
 	</p>
+	<div class="col-xs-12 col-sm-2 col-md-1">
+		<a href="#" class="btn btn-success js-upvote" id="upvote">
+			<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+		</a>
+		<label for="upvote" class="text-success">{{upvotes}}</label>
+	</div>
+	<div class="col-xs-12 col-sm-2 col-md-1">
+		<a href="#" class="btn btn-danger js-downvote" id="downvote">
+			<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+		</a>
+		<label for="downvote" class="text-danger">{{downvotes}}</label>
+	</div>
+	<div class="col-xs-12">
+		<h3>Description</h3>
+		<p>
+			{{description}}
+		</p>
+	</div>
+</div>
 </template>
 
 <template name="comments">
-	<div class="comment-section">
+	<div class="row comment-section">
 	{{> commentsBox id=_id}}
 	</div>
 </template>

@@ -58,7 +58,7 @@ Comments.ui.config({
 // helper function that returns all available websites
 Template.website_list.helpers({
 	websites:function(){
-		return Websites.find({}, {sort: {upvotes: -1}});
+		return Websites.find({}, {sort: {upvotes: -1, downvotes: 1, createdOn: -1}});
 	}
 });
 
@@ -78,7 +78,7 @@ Template.details.helpers({
 // template events
 /////
 
-Template.website_item.events({
+var voteEvents = {
 	"click .js-upvote":function(event){
 
 		var website_id = this._id;
@@ -100,7 +100,10 @@ Template.website_item.events({
 		
 		return false;// prevent the button from reloading the page
 	}
-});
+}
+
+Template.website_item.events(voteEvents);
+Template.details.events(voteEvents);
 
 Template.website_form.events({
 	"click .js-toggle-website-form":function(event){
