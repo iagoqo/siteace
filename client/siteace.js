@@ -55,10 +55,6 @@ Comments.ui.config({
 // template helpers
 /////
 
-function formatDate(date) {
-	return moment(date).fromNow();
-}
-
 // helper function that returns all available websites
 Template.website_list.helpers({
 	websites:function(){
@@ -88,14 +84,8 @@ Template.website_item.events({
 		var website_id = this._id;
 
 		if (Meteor.user()) {
-			Websites.update(
-				{_id:website_id},
-				{$inc:{upvotes:1}}
-			);
+			upvote(Meteor.userId(), website_id);
 		}
-		
-		var result = Websites.findOne({_id:website_id});
-		console.log(result);
 		
 		// Prevent page reload
 		return false;
@@ -105,10 +95,7 @@ Template.website_item.events({
 		var website_id = this._id;
 
 		if (Meteor.user()) {
-			Websites.update(
-				{_id:website_id},
-				{$inc:{downvotes:1}}
-			);
+			downvote(Meteor.userId(), website_id);
 		}
 		
 		return false;// prevent the button from reloading the page
@@ -126,15 +113,7 @@ Template.website_form.events({
 		var description = event.target.title.value;
 		
 		if (Meteor.user()) {
-			Websites.insert({
-				url:url,
-				title:title,
-				description:description,
-				createdOn:new Date(),
-				createdBy:Meteor.user()._id,
-				upvotes:0,
-				downvotes:0
-			});
+			addWebsite(url, title, description);
 		}
 		
 		// Hide the form div

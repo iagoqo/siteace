@@ -3,37 +3,25 @@ Meteor.startup(function () {
 	// code to run on server at startup
 	if (!Websites.findOne()){
 		console.log("No websites yet. Creating starter data.");
-		Websites.insert({
-			title:"Goldsmiths Computing Department",
-			url:"http://www.gold.ac.uk/computing/",
-			description:"This is where this course was developed.",
-			createdOn:new Date(),
-			upvotes: 0,
-			downvotes: 0
-		});
-		Websites.insert({
-			title:"University of London",
-			url:"http://www.londoninternational.ac.uk/courses/undergraduate/goldsmiths/bsc-creative-computing-bsc-diploma-work-entry-route",
-			description:"University of London International Programme.",
-			createdOn:new Date(),
-			upvotes: 0,
-			downvotes: 0
-		});
-		Websites.insert({
-			title:"Coursera",
-			url:"http://www.coursera.org",
-			description:"Universal access to the world’s best education.",
-			createdOn:new Date(),
-			upvotes: 0,
-			downvotes: 0
-		});
-		Websites.insert({
-			title:"Google",
-			url:"http://www.google.com",
-			description:"Popular search engine.",
-			createdOn:new Date(),
-			upvotes: 0,
-			downvotes: 0
-		});
+		addWebsite(
+			"http://www.gold.ac.uk/computing/",
+			"Goldsmiths Computing Department",
+			"This is where this course was developed."
+		);
+		addWebsite(
+			"http://www.londoninternational.ac.uk/courses/undergraduate/goldsmiths/bsc-creative-computing-bsc-diploma-work-entry-route",
+			"University of London",
+			"University of London International Programme."
+		);
+		addWebsite(
+			"http://www.coursera.org",
+			"Coursera",
+			"Universal access to the world’s best education."
+		);
+		addWebsite(
+			"http://www.google.com",
+			"Google",
+			"Popular search engine."
+		);
 	}
 });
