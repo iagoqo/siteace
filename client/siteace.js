@@ -113,7 +113,11 @@ Template.website_form.events({
 		
 		var url = event.target.url.value;
 		var title = event.target.title.value;
-		var description = event.target.title.value;
+		var description = event.target.description.value;
+		
+		if(url.substring(0,6) != "http://" || url.substring(0.6) != "https://"){
+			url = "http://" + url;
+		}
 		
 		if (Meteor.user()) {
 			addWebsite(url, title, description);
