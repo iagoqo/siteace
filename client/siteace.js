@@ -84,7 +84,7 @@ var voteEvents = {
 		var website_id = this._id;
 
 		if (Meteor.user()) {
-			upvote(Meteor.userId(), website_id);
+			Meteor.call("upvote", Meteor.userId(), website_id);
 		}
 		
 		// Prevent page reload
@@ -95,7 +95,7 @@ var voteEvents = {
 		var website_id = this._id;
 
 		if (Meteor.user()) {
-			downvote(Meteor.userId(), website_id);
+			Meteor.call("downvote", Meteor.userId(), website_id);
 		}
 		
 		return false;// prevent the button from reloading the page
@@ -120,7 +120,7 @@ Template.website_form.events({
 		}
 		
 		if (Meteor.user()) {
-			addWebsite(url, title, description);
+			Meteor.call("addWebsite", url, title, description);
 		}
 		
 		// Hide the form div
