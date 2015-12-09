@@ -115,7 +115,7 @@ Template.website_form.events({
 		var title = event.target.title.value;
 		var description = event.target.description.value;
 		
-		if(url.substring(0,6) != "http://" || url.substring(0.6) != "https://"){
+		if(url.substring(0,6) != "http://" || url.substring(0,7) != "https://"){
 			url = "http://" + url;
 		}
 		
